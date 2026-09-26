@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بۆ رەیانەکەم</title>
-    <!-- هەڵبژاردنی فۆنتی کوردیی خانزاد -->
-    <link href="https://fonts.cdnfonts.com/css/kurdish-khanzad" rel="stylesheet">
+    <!-- فۆنتی کوردیی وەزیرمتن -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,98 +14,124 @@
         }
 
         body {
-            font-family: 'Kurdish Khanzad', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* وێنەی باکگراوەند */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+            /* وێنەی پاشبنەما (باکگراوەند) */
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
                         url('https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/IMG_0486.jpeg') no-repeat center center/cover;
             overflow: hidden;
             cursor: pointer;
+            padding: 12px;
         }
 
         .container {
             text-align: center;
             color: #ffffff;
-            padding: 20px;
-            max-width: 500px;
-            width: 90%;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            transition: all 0.5s ease;
+            padding: 16px 14px;
+            max-width: 380px;
+            width: 100%;
+            max-height: 90vh;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* دوگمەی سادەی دەستپێک */
+        /* دەقی دەستپێک پێش کلیک کردن */
         .click-hint {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 600;
             animation: pulse 1.5s infinite;
+            padding: 20px 10px;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
+            50% { transform: scale(1.04); opacity: 1; }
             100% { transform: scale(1); opacity: 0.8; }
         }
 
-        /*ناوەرۆکی شاردراوە کە بە کلیک دەردەکەوێت */
+        /* ناوەڕۆکی شاردراوە کە لەگەڵ کلیک دەردەکەوێت */
         .content {
             display: none;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(12px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            width: 100%;
         }
 
         .content.show {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* وێنەی ناوەوە بە قەبارەی گونجاو بۆ مۆبایل */
         .revealed-img {
             width: 100%;
-            max-width: 320px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            max-width: 210px;
+            max-height: 38vh;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
         }
 
+        /* دەقی ئاشقانە بە قەبارەی بچووکتر و گونجاو */
         .love-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        .love-text b {
+            color: #ffe6eb;
+            font-size: 1rem;
         }
 
         .heart {
             color: #ff4b2b;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
-        /* شاردنەوەی ڤیدیۆکە بۆ ئەوەی تەنها دەنگەکەی کاربکات */
-        audio, video {
-            display: none;
+        /* شاردنەوەی تەواوەتی ڤیدیۆ تا تەنها دەنگەکەی کار بکات */
+        .hidden-audio {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
         }
     </style>
 </head>
 <body>
 
-    <!-- کاتێک کلیک لە هەر شوێنێکی پەڕەکە بکرێت کار دەکات -->
     <div class="container" id="mainContainer">
+        <!-- دەقی سەرەتایی -->
         <div class="click-hint" id="hintText">
-            داگرە بۆ کردنەوەی پەڕەکە... ❤️
+            کلیک بکە بۆ کردنەوەی پەڕەکە... ❤️
         </div>
 
+        <!-- ناوەڕۆکی دوای کلیک -->
         <div class="content" id="secretContent">
             <!-- وێنەی دووەم -->
             <img src="https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/IMG_0482.jpeg" alt="رەیان" class="revealed-img">
@@ -120,8 +146,8 @@
         </div>
     </div>
 
-    <!-- سەرچاوەی دەنگی نوێ (.mov) کە بە شێوازی شاردراوە لێدەدرێت -->
-    <video id="audioPlayer">
+    <!-- فایلی دەنگ (ڤیدیۆکە شاردراوەتەوە) -->
+    <video id="audioPlayer" class="hidden-audio" playsinline preload="auto">
         <source src="https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/v14044g50000da3ihffog65vu3vpufn0.mov" type="video/quicktime">
         <source src="https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/v14044g50000da3ihffog65vu3vpufn0.mov" type="video/mp4">
     </video>
@@ -135,10 +161,10 @@
 
         body.addEventListener('click', () => {
             if (!isPlayed) {
-                // لێدانی دەنگ
-                audio.play().catch(error => console.log("کارپێکردن سەرکەوتوو نەبوو: ", error));
+                // لێدانی دەنگ لە پاشبنەما
+                audio.play().catch(error => console.log("کارپێکردنی دەنگ سەرکەوتوو نەبوو: ", error));
                 
-                // شاردنەوەی دەقی ڕێنمایی و پیشاندانی وێنە و دەق
+                // شاردنەوەی ئاگاداری و پیشاندانی وێنە و دەقەکە
                 hintText.style.display = 'none';
                 secretContent.classList.add('show');
                 
