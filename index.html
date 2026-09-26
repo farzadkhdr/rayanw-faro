@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بۆ رەیانەکەم</title>
+    <link href="https://fonts.cdnfonts.com/css/kurdish-khanzad" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kurdish Khanzad', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* وێنەی باکگراوەند */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/IMG_0486.jpeg') no-repeat center center/cover;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .container {
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.5s ease;
+        }
+
+        /* دوگمەی سادەی دەستپێک */
+        .click-hint {
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* ناوەڕۆکی شاردراوە کە بە کلیک دەردەکەوێت */
+        .content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .revealed-img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .love-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .heart {
+            color: #ff4b2b;
+            font-size: 1.6rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* شاردنەوەی ڤیدیۆکە بۆ ئەوەی تەنها دەنگەکەی کاربکات */
+        audio, video {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="click-hint" id="hintText">
+            داگرە بۆ کردنەوەی پەڕەکە... ❤️
+        </div>
+
+        <div class="content" id="secretContent">
+            <img src="https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/IMG_0482.jpeg" alt="رەیان" class="revealed-img">
+            
+            <p class="love-text">
+                تۆ جوانترین دیاری بەخشراوی ژیانمی، <b>رەیان</b>ەکەم..<br>
+                لەگەڵ هەر لێدانێکی دڵم، خۆشەویستیت قووڵتر دەبێتەوە.<br>
+                ماڵێک لە ئەڤینت لە ناخما دروست بووە کە هیچ سۆزێک جێی ناگرێتەوە. ✨
+            </p>
+            <span class="heart">❤️</span>
+        </div>
+    </div>
+
+    <video id="audioPlayer">
+        <source src="https://raw.githubusercontent.com/farzadkhdr/rayanw-faro/main/v14044g50000da3ihffog65vu3vpufn0.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        const body = document.body;
+        const audio = document.getElementById('audioPlayer');
+        const hintText = document.getElementById('hintText');
+        const secretContent = document.getElementById('secretContent');
+        let isPlayed = false;
+
+        body.addEventListener('click', () => {
+            if (!isPlayed) {
+                // لێدانی دەنگ
+                audio.play().catch(error => console.log("کارپێکردن سەرکەوتوو نەبوو: ", error));
+                
+                // شاردنەوەی دەقی ڕێنمایی و پیشاندانی وێنە و دەق
+                hintText.style.display = 'none';
+                secretContent.classList.add('show');
+                
+                isPlayed = true;
+            }
+        });
+    </script>
+</body>
+</html>
